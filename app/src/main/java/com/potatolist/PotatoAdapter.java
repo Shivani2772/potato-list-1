@@ -1,6 +1,7 @@
 package com.potatolist;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -12,11 +13,11 @@ import java.util.HashMap;
 
 class PotatoAdapter extends BaseAdapter {
     private Context mContext;
-    public ArrayList<HashMap<String, String>> potatoInfo = new ArrayList<HashMap<String, String>>();
-    public ArrayList<Integer> potatoIcons = new ArrayList<Integer>();
+    public ArrayList<Potatoes> potatoInfo = new ArrayList<>();
 
-    public PotatoAdapter(Context c) {
+    public PotatoAdapter(Context c, ArrayList x) {
         mContext = c;
+        potatoInfo = x;
     }
 
     public int getCount() {
@@ -33,6 +34,7 @@ class PotatoAdapter extends BaseAdapter {
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
+        Log.d("000000000000000000", "---------------------");
         ImageView imageView;
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
@@ -44,7 +46,7 @@ class PotatoAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(potatoIcons.get(position));
+        imageView.setImageResource(potatoInfo.get(position).getIcon());
         return imageView;
     }
 
